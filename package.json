@@ -1,0 +1,19 @@
+{
+  "name": "minapp-canvas-utils",
+  "version": "1.0.0",
+  "description": "小程序 canvas 绘制实用工具",
+  "main": "libs/canvas-utils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chunnallu/minapp-canvas-utils.git"
+  },
+  "author": "lcl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chunnallu/minapp-canvas-utils/issues"
+  },
+  "homepage": "https://github.com/chunnallu/minapp-canvas-utils#readme"
+}
