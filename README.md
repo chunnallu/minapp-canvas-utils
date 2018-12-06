@@ -1,5 +1,7 @@
 # minapp-canvas-utils 微信小程序绘图实用工具
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chunnallu/minapp-canvas-utils.svg)](https://greenkeeper.io/)
+
 封装了微信小程序绘图常用的功能，如图像裁剪、文本绘制
 
 ## 安装
