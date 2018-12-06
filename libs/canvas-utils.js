@@ -220,8 +220,7 @@ const CanvasUtils = function(id, component = this) {
 
   // 计算文字的包围盒
   const calcTextBoundingRect = function(text, x, y , options) {
-    options.draw = false;
-    return setText(text, x, y , options)
+    return setText(text, x, y , {...options, draw: false})
   }
 
   /**
