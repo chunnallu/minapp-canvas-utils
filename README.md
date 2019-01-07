@@ -146,7 +146,7 @@ BoundingRect
 - width: 画布上绘制区域的宽度
 - height: 画布上绘制区域的高度
 - borderRadius: 圆角
-- color: 填充颜色
+- color: 填充颜色，支持纯色和渐变（渐变传入一个字符串，例如：linear-gradient(180deg, #FFFFFF 0%, #D7EAFF 100%)，角度不支持负值）
 
 返回值：
 

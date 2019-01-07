@@ -368,7 +368,11 @@ const CanvasUtils = function(id, component = this) {
    // 填充矩形
    const fillRect = function(x, y, width, height, borderRadius = 0, color = '#fff') {
     createRectPath(x, y, width, height, borderRadius)
-    ctx.setFillStyle(color)
+    if(isGradientString(color)) {
+      ctx.setFillStyle(createGradient(x, y, x+width, y+height, color))
+    } else {
+      ctx.setFillStyle(color)
+    }
     ctx.fill()
     // 微信小程序bug：两个路径有重叠时，使用clip会有问题，用如下代码可以解决 
     ctx.fillRect(0, 0, 0, 0);
@@ -438,6 +442,78 @@ const strokeRect = function(x, y, width, height, borderRadius = 0, borderWidth =
   }
 
   /**
+   * 渐变
+   */
+  const gradientRegex = /^(linear-gradient|radial-gradient)\((-?\d+deg,(#[0-9a-fA-F]{6} \d+%,?)+)\);?$/g
+
+  // 判断一个字符串是否是符合规范的渐变字符串
+  const isGradientString = function(gradientString) {
+    // linear-gradient(-180deg, #FFFFFF 0%, #D7EAFF 100%)
+    gradientString = gradientString.replace(/, /g, ',')
+    return gradientRegex.test(gradientString)
+  }
+
+  // 将渐变字符串转成对象表示
+  const parseGradientString = function(gradientString) {
+    gradientString = gradientString.replace(/, /g, ',')
+    const type = gradientString.replace(gradientRegex, '$1')
+    const paramArray = gradientString.replace(gradientRegex, '$2').split(',')
+
+    // 将所有角度转成正角
+    let deg = parseFloat(paramArray[0])
+
+    let factors = [1, 1]
+    switch(deg % 360) {
+      case 0: {
+        factors = factors.concat([1, 0])
+        break;
+      }
+      case 90: {
+        factors = factors.concat([0, 1])
+        break;
+      }
+      case 180: {
+        factors = factors.concat([0, -1])
+        break;
+      }
+      case 270: {
+        factors = factors.concat([-1, 0])
+        break;
+      }
+      default:{
+        factors = factors.concat([1, 1 / Math.tan(degToRad(deg))])
+      }
+    }
+
+    let stops = []
+    for(let i=1; i < paramArray.length; i++) {
+      const arr = paramArray[i].split(" ")
+      stops.push([parseFloat(arr[1])/100, arr[0]])
+    }
+
+    return { 
+      type,
+      factors,
+      stops,
+    }
+  }
+
+  // 创建渐变
+  //注意： 1. gradientString 的角度不支持负数
+  const createGradient = function(x, y, width, height, gradientString) {
+    const gradientParams = parseGradientString(gradientString)
+    console.log(x, y, x+Math.abs(width*gradientParams.factors[2]), y+Math.abs(height*gradientParams.factors[3]))
+    const grd = ctx.createLinearGradient(x, y, x+Math.abs(width*gradientParams.factors[2]), y+Math.abs(height*gradientParams.factors[3]))
+    const isNe = gradientParams.factors[2] < 0 || gradientParams.factors[3] < 0
+    const stops = gradientParams.stops
+    console.log(stops)
+    stops.forEach(item => {
+      grd.addColorStop(item[0], item[1])
+    });
+    return grd;
+  }
+
+  /**
    * 渲染
    */
   const draw = function(reverse = true) {
@@ -473,6 +549,7 @@ const strokeRect = function(x, y, width, height, borderRadius = 0, borderWidth =
     createRectPath,
     copy,
     paste,
+    isGradientString,
     draw,
   }
 }
