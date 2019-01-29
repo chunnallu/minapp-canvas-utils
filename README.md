@@ -8,6 +8,10 @@
 npm i minapp-canvas-utils
 ```
 
+## 示例
+
+本项目本身就是一个微信小程序，用微信开发工具打开本项目即可看到示例。或者你也可以打开 `pages/index/index.js` 文件查看
+
 ## API
 
 ### 创建
@@ -209,9 +213,107 @@ Promise，参考[微信文档](https://developers.weixin.qq.com/miniprogram/dev/
 
 Promise， 参考[微信文档](https://developers.weixin.qq.com/miniprogram/dev/api/wx.canvasPutImageData.html)
 
+### isLinearGradientString
+
+判断一个字符串是否是符合规范的线性渐变字符串
+
+参数：
+- gradientString, 例如 `linear-gradient(180deg, #FFFFFF 0%, #D7EAFF 100%)`
+
+返回值：
+
+Boolean
+
+### parseLinearGradientString
+
+将线性渐变字符串转成对象表示
+
+参数：
+- gradientString, 例如 `linear-gradient(180deg, #FFFFFF 0%, #D7EAFF 100%)`
+
+返回值：
+
+```
+{
+  type: 'linear-gradient',
+  factors: [1, 1, 0, -1],
+  stops: [
+    [0, "#FFFFFF"],
+    [1, "#D7EAFF"],
+  ],
+}
+```
+**factors** 数组用来表述渐变角度，在使用微信小程序原生接口创建渐变时可以这样用 `ctx.createLinearGradient(x*factors[0], y*factors[1], x+Math.abs(width*factors[2]), y+Math.abs(height*factors[3]))`
+
+**stops** 数组每一项都是 `gradient.addColorStop` 方法的参数
+
+
+### createLinearGradient
+
+创建线性渐变
+
+参数：
+- x, 绘制区域的 x 坐标
+- y, 绘制区域的 y 坐标
+- width, 绘制区域的宽度
+- height, 绘制区域的高度
+- gradientString, 例如 `linear-gradient(180deg, #FFFFFF 0%, #D7EAFF 100%)`
+
+返回：
+
+[CanvasGradient 对象](https://developers.weixin.qq.com/miniprogram/dev/api/CanvasGradient.html)
+
+### isCircularGradientString
+
+判断一个字符串是否是符合规范的线性径向字符串
+
+参数：
+- gradientString, 例如 `circular-gradient(#FFFFFF 0%, #D7EAFF 100%)`
+
+返回值：
+
+Boolean
+
+### parseCircularGradientString
+
+将线性径向字符串转成对象表示
+
+参数：
+- gradientString, 例如 `circular-gradient(#FFFFFF 0%, #D7EAFF 100%)`
+
+返回值：
+
+```
+{
+  type: 'linear-gradient',
+  stops: [
+    [0, "#FFFFFF"],
+    [1, "#D7EAFF"],
+  ],
+}
+```
+
+**stops** 数组每一项都是 `gradient.addColorStop` 方法的参数
+
+### createCircularGradient
+
+创建径向渐变
+
+参数：
+- x, 绘制区域的 x 坐标
+- y, 绘制区域的 y 坐标
+- radius, 绘制区域半径
+- gradientString, 例如 `circular-gradient(#FFFFFF 0%, #D7EAFF 100%)`
+
+返回：
+
+[CanvasGradient 对象](https://developers.weixin.qq.com/miniprogram/dev/api/CanvasGradient.html)
+
 ### draw
 
 绘制到画布中 draw(reverse)
+
+> 需要注意，不调用 draw 是不会将图形绘制到画布中的
 
 参数：
 - reverse 本次绘制是否接着上一次绘制
