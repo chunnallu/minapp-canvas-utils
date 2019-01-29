@@ -33,6 +33,10 @@ Page({
       // 测试基本图形绘制
       const padding = 4;
       canvasUtils.strokeRect(descriptionRect.x-padding, descriptionRect.y-padding, descriptionRect.width+2*padding, descriptionRect.height+2*padding, 5, 1, "#ff0000")
+
+      // 渐变绘制
+      canvasUtils.fillRect(0, 750, 375, 400, 0, "linear-gradient(180deg, #FFFFFF 0%, #D7EAFF 100%)")
+      canvasUtils.fillRect(0, 1200, 375, 400, 0, "circular-gradient(#D7EAFF 0%, #FFFFFF 100%)")
       
       // 测试参考线
       canvasUtils.drawCoordinate({
