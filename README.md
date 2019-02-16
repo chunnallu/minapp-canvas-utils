@@ -190,9 +190,9 @@ BoundingRect
 BoundingRect
 
 
-### copy
+### copyPixel
 
-拷贝像素 copy(rect)
+拷贝像素 copyPixel(rect)
 
 参数：
 - rect, 形如 {x, y, width, height} 的对象
@@ -201,9 +201,9 @@ BoundingRect
 
 Promise，参考[微信文档](https://developers.weixin.qq.com/miniprogram/dev/api/wx.canvasGetImageData.html)
 
-### paste
+### pastePixel
 
-粘贴像素 paste (data, rect)
+粘贴像素 pastePixel (data, rect)
 
 参数：
 - data 像素数组，参考[微信文档](https://developers.weixin.qq.com/miniprogram/dev/api/wx.canvasPutImageData.html)
