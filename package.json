@@ -1,6 +1,6 @@
 {
   "name": "minapp-canvas-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "小程序 canvas 绘制实用工具",
   "main": "static/libs/canvas-utils.js",
   "scripts": {
@@ -19,12 +19,6 @@
   },
   "homepage": "https://github.com/chunnallu/minapp-canvas-utils#readme",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.5",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^5.14.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-config-standard": "^12.0.0",
@@ -37,8 +31,5 @@
     "prettier": "1.16.4",
     "webpack": "^4.29.4",
     "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5"
   }
 }
