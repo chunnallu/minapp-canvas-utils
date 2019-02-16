@@ -1,0 +1,4 @@
+demo/
+static/
+webpack.config.js
+babel.config.js
