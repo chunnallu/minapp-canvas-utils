@@ -1,6 +1,6 @@
 {
   "name": "minapp-canvas-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "小程序 canvas 绘制实用工具",
   "main": "static/libs/canvas-utils.js",
   "scripts": {
