@@ -10,7 +10,7 @@ npm i minapp-canvas-utils
 
 ## 示例
 
-本项目本身就是一个微信小程序，用微信开发工具打开本项目即可看到示例。或者你也可以打开 `pages/index/index.js` 文件查看
+用微信开发工具打开 `static` 目录即可看到示例
 
 ## API
 
