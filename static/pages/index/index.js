@@ -13,7 +13,7 @@ Page({
       description: `这里是关于文章的介绍，这里是关于文章的介绍。这里是关于文章的介绍，这里是关于文章的介绍，这里是关于文章的介绍。
       这里这里这里`,
     }
-    const canvasUtils = CanvasUtils("canvas-test")
+    const canvasUtils = new CanvasUtils("canvas-test")
     canvasUtils.loadImages([data.cover, data.gifImage]).then(images => {
       const [cover, gifImage] = images;
       // 测试图像处理
